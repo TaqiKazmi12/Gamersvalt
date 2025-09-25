@@ -1,0 +1,230 @@
+/* My Games Page Starting */
+:root {
+    --primary-neon: #FF8C00;
+    --secondary-neon: #FFA500;
+    --background-station: #0d0d10;
+    --background-panel: #1a1a1e;
+    --text-primary: #e8e8e8;
+    --text-secondary: #a0a8b4;
+    --text-dark: #020205;
+    --border-color-faint: rgba(255, 140, 0, 0.15);
+    --success-color: #4CAF50;
+    --font-primary: 'Inter', system-ui, sans-serif;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUpIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+body {
+    background-color: var(--background-station);
+    font-family: var(--font-primary);
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.library-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: clamp(20px, 5vw, 40px);
+}
+
+.library-header {
+    padding-top: 100px; 
+    padding-bottom: 40px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color-faint);
+    margin-bottom: 40px;
+    animation: fadeIn 1s ease-out;
+}
+
+.library-header h1 {
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+    font-weight: 800;
+    margin: 0;
+    color: var(--primary-neon);
+    text-shadow: 0 0 10px var(--primary-neon);
+}
+
+.library-header p {
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
+    color: var(--text-secondary);
+    margin: 10px 0 0;
+}
+
+.library-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 30px;
+}
+
+.game-card {
+    background-color: var(--background-panel);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid transparent;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUpIn 0.5s ease-out forwards;
+}
+
+
+
+.game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    border-color: var(--primary-neon);
+}
+
+.card-image-link {
+    display: block;
+    aspect-ratio: 4 / 3;
+    background-color: #000;
+    overflow: hidden;
+}
+
+.card-image-link img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.game-card:hover .card-image-link img {
+    transform: scale(1.05);
+}
+
+.card-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 0 0 auto 0; 
+    line-height: 1.3;
+    color: var(--text-primary);
+}
+
+.card-actions {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.action-button {
+    padding: 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.view-button {
+    background-color: #333;
+    color: var(--text-primary);
+}
+.view-button:hover {
+    background-color: #444;
+}
+
+.download-button {
+    background-color: var(--primary-neon);
+    color: var(--text-dark);
+}
+.download-button:hover {
+    background-color: var(--secondary-neon);
+}
+
+.download-button.is-downloading {
+    color: transparent;
+    user-select: none;
+}
+.download-button .progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.4);
+    width: 0;
+    transition: width 3s linear;
+}
+
+.download-button.is-complete {
+    background-color: var(--success-color);
+    color: white;
+    cursor: default;
+}
+.download-button.is-complete:hover {
+    background-color: var(--success-color);
+}
+
+
+.empty-library {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 80px 40px;
+    background-color: var(--background-panel);
+    border-radius: 12px;
+    border: 2px dashed var(--border-color-faint);
+    animation: fadeIn 1s ease-out;
+}
+
+.empty-library h2 {
+    font-size: 2.5rem;
+    color: var(--text-primary);
+    margin: 0 0 15px 0;
+}
+
+.empty-library p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    max-width: 500px;
+    margin: 0 auto 30px;
+}
+
+.explore-button {
+    display: inline-block;
+    background-color: var(--primary-neon);
+    color: var(--text-dark);
+    padding: 14px 35px;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 6px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.explore-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(var(--primary-neon-rgb), 0.4);
+}
+
+@media (max-width: 768px) {
+    .library-container {
+        padding: 0 20px;
+    }
+    .library-grid {
+        grid-template-columns: 1fr;
+    }
+}
+/* My Games Page Ending */

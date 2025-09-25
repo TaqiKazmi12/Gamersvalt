@@ -1,0 +1,216 @@
+/* Developer Login Page Starting */
+:root {
+    --primary-neon-rgb: 255, 140, 0;
+    --primary-neon: rgb(var(--primary-neon-rgb));
+    --background-dark: #000000;
+    --terminal-bg: rgba(10, 10, 15, 0.85);
+    --input-bg: rgba(0, 0, 0, 0.4);
+    --input-text-color: #FFD700;
+    --border-subtle: rgba(var(--primary-neon-rgb), 0.3);
+    --error-color: #FF4500;
+    --success-color: #32CD32;
+    --footer-text-color: rgba(255, 255, 255, 0.5);
+}
+
+@keyframes terminal-entry {
+    from { opacity: 0; transform: scale(0.9) translateY(20px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes scan-line {
+    0%   { top: 0; }
+    100% { top: 100%; }
+}
+@keyframes text-glitch {
+    0%, 100% { transform: none; }
+    25% { transform: skew(-0.5deg, -0.2deg); }
+    50% { transform: none; }
+    75% { transform: skew(0.5deg, 0.2deg); }
+}
+@keyframes form-field-entry {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+@keyframes blink { from, to { opacity: 1; } 50% { opacity: 0; } }
+
+body {
+    font-family: 'Roboto Mono', 'Segoe UI', monospace;
+    background-color: var(--background-dark);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden; 
+}
+
+
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; 
+    overflow: hidden;
+}
+
+.video-background video {
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: cover; 
+}
+
+.auth-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: clamp(10px, 4vw, 20px);
+    box-sizing: border-box;
+    position: relative;
+    z-index: 2;
+}
+
+.auth-terminal {
+    width: 100%;
+    max-width: clamp(350px, 90vw, 600px); 
+    background-color: var(--terminal-bg);
+    border: 1px solid var(--border-subtle);
+    box-shadow: 0 0 40px rgba(var(--primary-neon-rgb), 0.4), inset 0 0 15px rgba(var(--primary-neon-rgb), 0.1);
+    backdrop-filter: blur(12px);
+    position: relative;
+    clip-path: polygon(0 20px, 20px 0, calc(100% - 20px) 0, 100% 20px, 100% calc(100% - 20px), calc(100% - 20px) 100%, 20px 100%, 0 calc(100% - 20px));
+    padding: 10px;
+    animation: terminal-entry 1s ease-out forwards;
+    overflow: hidden;
+}
+
+.scanline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to bottom, rgba(var(--primary-neon-rgb), 0), rgba(var(--primary-neon-rgb), 0.5), rgba(var(--primary-neon-rgb), 0));
+    animation: scan-line 6s linear infinite;
+    z-index: 1;
+}
+
+.terminal-header {
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: clamp(8px, 2vw, 12px) clamp(15px, 3vw, 20px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: clamp(15px, 3vw, 20px);
+    position: relative;
+    z-index: 2;
+}
+
+.terminal-title {
+    margin: 0;
+    color: var(--primary-neon);
+    font-size: clamp(0.9em, 2.5vw, 1.2em);
+    letter-spacing: 3px;
+    font-weight: 400;
+    text-shadow: 0 0 10px var(--primary-neon);
+    animation: text-glitch 5s linear infinite;
+    position: relative;
+}
+
+.terminal-title::after {
+    content: '_';
+    position: absolute;
+    right: -12px;
+    animation: blink 1s step-end infinite;
+}
+.terminal-title.typing-done::after { display: none; }
+
+.terminal-lights span {
+    display: inline-block; width: clamp(8px, 2vw, 12px); height: clamp(8px, 2vw, 12px); border-radius: 50%; margin-left: clamp(4px, 1vw, 8px);
+    background-color: var(--border-subtle);
+}
+.terminal-lights span:nth-child(1) { background-color: var(--error-color); }
+.terminal-lights span:nth-child(2) { background-color: var(--input-text-color); }
+.terminal-lights span:nth-child(3) { background-color: var(--success-color); }
+
+.terminal-body { 
+    padding: 20px clamp(15px, 4vw, 30px); 
+    position: relative; 
+    z-index: 2; 
+}
+
+.form-group {
+    margin-bottom: clamp(20px, 4vw, 30px);
+    animation: form-field-entry 0.5s ease-out backwards;
+}
+
+.form-group label {
+    display: block; margin-bottom: clamp(8px, 1.5vw, 10px); color: var(--primary-neon);
+    font-size: clamp(0.9em, 2vw, 1em); font-weight: 500;
+}
+
+.form-group input {
+    width: 100%; padding: clamp(10px, 2vw, 12px) 15px; background-color: var(--input-bg); border: 1px solid var(--border-subtle);
+    border-radius: 4px; color: var(--input-text-color); font-size: clamp(0.9em, 2vw, 1em); outline: none;
+    box-sizing: border-box; transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input:focus {
+    border-color: var(--primary-neon); box-shadow: 0 0 10px rgba(var(--primary-neon-rgb), 0.5);
+}
+
+.neon-button {
+    background-color: transparent; color: var(--primary-neon); border: 2px solid var(--primary-neon);
+    padding: clamp(12px, 2.5vw, 15px) 30px; width: 100%; margin-top: clamp(10px, 2vw, 15px);
+    font-size: clamp(1em, 2.5vw, 1.2em); font-weight: bold;
+    letter-spacing: 2px; cursor: pointer; transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+.neon-button:hover { background-color: var(--primary-neon); color: var(--background-dark); box-shadow: 0 0 20px var(--primary-neon); }
+
+.alert-messages {
+    padding: 15px; margin-bottom: 20px; border-radius: 4px; text-align: center; font-size: 0.95em;
+}
+.error-alert { background-color: rgba(255, 69, 0, 0.15); color: var(--error-color); border: 1px solid var(--error-color); }
+.success-alert { background-color: rgba(50, 205, 50, 0.15); color: var(--success-color); border: 1px solid var(--success-color); }
+
+.terminal-footer {
+    padding: clamp(10px, 2vw, 15px) clamp(15px, 4vw, 30px);
+    text-align: center;
+    border-top: 1px solid var(--border-subtle);
+    margin-top: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.terminal-footer p {
+    margin: 5px 0;
+    color: var(--footer-text-color);
+    font-size: clamp(0.8em, 1.8vw, 0.9em);
+}
+
+.footer-link {
+    color: var(--primary-neon);
+    text-decoration: none;
+    font-weight: bold;
+    transition: text-shadow 0.3s ease;
+}
+
+.footer-link:hover {
+    text-shadow: 0 0 8px var(--primary-neon);
+}
+
+@media (max-width: 480px) {
+    .auth-terminal { 
+        clip-path: none; 
+        border-radius: 10px;
+    }
+}
+/* Developer Login Page Ending */

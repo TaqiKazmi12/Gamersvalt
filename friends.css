@@ -1,0 +1,129 @@
+/* Friends Page Starting */
+:root {
+    --primary-neon: #FF8C00;
+    --background-station: #0d0d10;
+    --background-panel: #1a1a1e;
+    --background-panel-light: #2c2c31;
+    --text-primary: #e8e8e8;
+    --text-secondary: #a0a8b4;
+    --text-dark: #020205;
+    --border-color-faint: rgba(255, 140, 0, 0.15);
+    --success-color: #4CAF50;
+    --error-color: #ff4d4d;
+    --font-primary: 'Inter', system-ui, sans-serif;
+}
+
+@keyframes slideUpIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+body { background-color: var(--background-station); font-family: var(--font-primary); color: var(--text-primary); margin: 0; }
+.social-container { max-width: 1400px; margin: 0 auto; padding: clamp(20px, 5vw, 40px); }
+.social-header { padding: 100px 0 40px; text-align: center; border-bottom: 1px solid var(--border-color-faint); margin-bottom: 40px; animation: slideUpIn 0.6s backwards; }
+.social-header h1 { font-size: clamp(2.5rem, 6vw, 3.5rem); font-weight: 800; margin: 0; }
+
+.social-layout { display: flex; align-items: flex-start; gap: 40px; }
+.social-sidebar { flex: 0 0 250px; position: sticky; top: 100px; }
+.social-nav { display: flex; flex-direction: column; gap: 10px; }
+.social-tab-link {
+    background: none; border: none; color: var(--text-secondary);
+    padding: 15px 20px; text-align: left; font-size: 1.1rem;
+    font-weight: 600; cursor: pointer; border-radius: 8px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-left: 3px solid transparent; transition: all 0.2s ease;
+}
+.social-tab-link:hover { background-color: var(--background-panel); color: var(--text-primary); }
+.social-tab-link.active {
+    background-color: var(--background-panel);
+    color: var(--primary-neon);
+    border-left-color: var(--primary-neon);
+}
+.social-tab-link .count { background-color: #333; color: var(--text-primary); font-size: 0.8rem; padding: 2px 8px; border-radius: 10px; }
+.social-tab-link.active .count { background-color: var(--primary-neon); color: var(--text-dark); }
+
+.social-content { flex-grow: 1; min-width: 0; }
+.social-tab-pane { display: none; }
+.social-tab-pane.active { display: block; animation: slideUpIn 0.4s; }
+.social-tab-pane h3 { font-size: 2rem; margin: 0 0 30px 0; }
+
+.user-list { display: flex; flex-direction: column; gap: 15px; }
+.user-card {
+    display: flex; align-items: center; justify-content: space-between;
+    background-color: var(--background-panel); padding: 20px;
+    border-radius: 8px; border: 1px solid var(--border-color-faint);
+    transition: all 0.3s ease;
+    opacity: 0; animation: slideUpIn 0.5s ease-out forwards;
+}
+.user-card:hover { border-color: var(--primary-neon); transform: scale(1.02); }
+.user-card.removing { opacity: 0; transform: scale(0.95); }
+.user-name { font-size: 1.2rem; font-weight: 600; }
+.user-actions { display: flex; gap: 10px; }
+.action-button-sm {
+    padding: 8px 18px; font-size: 0.9rem; font-weight: 600;
+    border-radius: 6px; border: none; cursor: pointer; transition: all 0.2s ease;
+}
+.message-btn, .decline-btn { background-color: #333; color: var(--text-primary); }
+.message-btn:hover, .decline-btn:hover { background-color: #444; }
+.accept-btn { background-color: var(--success-color); color: white; }
+.remove-btn:hover { background-color: var(--error-color); color: white; }
+
+.add-friend-form { display: flex; gap: 10px; }
+.add-friend-form input {
+    flex-grow: 1; padding: 12px; background: #2a2a2a; border: 1px solid #444;
+    border-radius: 6px; color: var(--text-primary); font-size: 1rem;
+}
+.add-friend-form button {
+    background-color: var(--primary-neon); color: var(--text-dark);
+    border: none; padding: 0 25px; border-radius: 6px; font-weight: bold; cursor: pointer;
+}
+
+.empty-message { color: var(--text-secondary); font-size: 1.1rem; }
+.form-message { margin-top: 15px; padding: 10px; border-radius: 6px; font-weight: 500; }
+.form-message.success { background-color: rgba(76, 175, 80, 0.2); color: var(--success-color); }
+.form-message.error { background-color: rgba(255, 77, 77, 0.2); color: var(--error-color); }
+
+@media(max-width: 992px) {
+    .social-layout { flex-direction: column; }
+    .social-sidebar { position: static; width: 100%; }
+    .social-nav { flex-direction: row; justify-content: center; flex-wrap: wrap; }
+}
+
+
+.add-friend-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.add-friend-form input {
+    flex-grow: 1;
+    padding: 12px;
+    background: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.add-friend-form button {
+    background-color: var(--primary-neon);
+    color: var(--text-dark);
+    border: none;
+    padding: 0 25px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.search-results {
+    border-top: 1px solid var(--border-color-faint);
+    padding-top: 30px;
+}
+
+.action-button-sm.add-friend-btn {
+    background-color: var(--success-color);
+    color: white;
+}
+.action-button-sm.add-friend-btn:disabled {
+    background-color: #333;
+    color: var(--text-secondary);
+    cursor: not-allowed;
+}

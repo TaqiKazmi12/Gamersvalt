@@ -1,0 +1,279 @@
+
+:root {
+    --primary-neon: #FF8C00; 
+    --secondary-neon: #FFA500; 
+    --background-dark: #000000; 
+    --form-panel-bg: #0d0d0d; 
+    --input-bg: #222222; 
+    --input-text-color: #FFD700; 
+    --border-subtle: #333333; 
+    --error-color: #FF4500; 
+    --text-color-light: rgba(255, 255, 255, 0.8); 
+    --success-color: #32CD32; 
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-dark);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden; 
+}
+
+.split-screen-container {
+    display: flex;
+    width: 100vw; 
+    height: 100vh; 
+    overflow: hidden; 
+    box-shadow: 0 0 50px rgba(255, 140, 0, 0.4); 
+    border-radius: 0; 
+}
+
+.left-panel, .right-panel {
+    flex: 1; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    box-sizing: border-box;
+    position: relative;
+    border: none; 
+}
+
+.left-panel {
+    background-color: var(--form-panel-bg);
+    border-right: none; 
+    box-shadow: inset -10px 0 20px rgba(255, 140, 0, 0.05); 
+}
+
+.right-panel {
+    background-image: url('valt.png'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.right-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 15%; 
+    height: 100%;
+    background: linear-gradient(to right, var(--form-panel-bg) 0%, rgba(0,0,0,0) 100%);
+    pointer-events: none; 
+    z-index: 1; 
+}
+
+
+.form-content-wrapper {
+    width: 100%;
+    max-width: 450px; 
+    text-align: center;
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 140, 0, 0.1); 
+    box-shadow: 0 0 25px rgba(255, 140, 0, 0.2); 
+    background-color: rgba(13, 13, 13, 0.8); 
+}
+
+.form-content-wrapper h2 {
+    color: var(--primary-neon);
+    margin-bottom: 40px;
+    font-size: 3em;
+    text-shadow: 0 0 20px rgba(255, 140, 0, 0.8);
+    letter-spacing: 2px;
+}
+
+.form-group {
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 12px;
+    font-weight: bold;
+    color: var(--primary-neon);
+    font-size: 1.15em;
+    text-shadow: 0 0 5px rgba(255, 140, 0, 0.5);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 15px 20px;
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px; 
+    color: var(--input-text-color);
+    font-size: 1em;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    box-sizing: border-box; 
+}
+
+.form-group input::placeholder {
+    color: rgba(255, 215, 0, 0.5); 
+}
+
+.form-group input:focus {
+    border-color: var(--primary-neon);
+    box-shadow: 0 0 15px rgba(255, 140, 0, 0.8);
+    background-color: #2a2a2a; 
+}
+
+.form-group .error-message {
+    color: var(--error-color);
+    font-size: 0.95em;
+    margin-top: 10px;
+    display: none; 
+    text-shadow: 0 0 5px rgba(255, 69, 0, 0.5);
+}
+
+.neon-button {
+    background-color: var(--primary-neon);
+    color: var(--background-dark); 
+    padding: 18px 35px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.3em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 25px rgba(255, 140, 0, 0.7); 
+    margin-top: 20px;
+    width: 100%;
+    max-width: 300px;
+    letter-spacing: 1px;
+}
+
+.neon-button:hover {
+    background-color: var(--secondary-neon);
+    box-shadow: 0 0 40px rgba(255, 165, 0, 0.9);
+    transform: translateY(-3px);
+}
+
+.login-link {
+    margin-top: 35px;
+    color: var(--primary-neon);
+    font-size: 1.05em;
+}
+
+.login-link .neon-link {
+    color: var(--input-text-color); 
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.login-link .neon-link:hover {
+    color: var(--secondary-neon);
+    text-decoration: underline;
+    text-shadow: 0 0 10px rgba(255, 165, 0, 0.8);
+}
+
+.login-link:nth-of-type(2) { 
+    margin-top: 15px; 
+}
+
+.alert-messages {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1em;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.error-alert {
+    background-color: rgba(255, 69, 0, 0.2); 
+    color: var(--error-color);
+    border: 1px solid var(--error-color);
+    text-shadow: 0 0 5px rgba(255, 69, 0, 0.4);
+}
+
+.success-alert {
+    background-color: rgba(50, 205, 50, 0.2); 
+    color: var(--success-color);
+    border: 1px solid var(--success-color);
+    text-shadow: 0 0 5px rgba(50, 205, 50, 0.4);
+}
+
+@media (max-width: 992px) {
+    .split-screen-container {
+        flex-direction: column; 
+        height: auto; 
+        min-height: 100vh; 
+        box-shadow: 0 0 30px rgba(255, 140, 0, 0.3); 
+    }
+
+    .left-panel, .right-panel {
+        width: 100%;
+        min-height: 50vh; 
+        padding: 30px;
+        box-shadow: none;
+        border-right: none;
+    }
+
+    .left-panel {
+        border-bottom: 1px solid rgba(255, 140, 0, 0.2); 
+        box-shadow: inset 0 -10px 20px rgba(255, 140, 0, 0.05); 
+    }
+
+    .right-panel::before {
+        width: 100%;
+        height: 15%; 
+        background: linear-gradient(to bottom, var(--form-panel-bg) 0%, rgba(0,0,0,0) 100%);
+    }
+
+
+    .form-content-wrapper h2 {
+        font-size: 2.5em;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 576px) {
+    .left-panel, .right-panel {
+        padding: 20px;
+        min-height: auto; 
+    }
+
+    .form-content-wrapper {
+        max-width: 350px;
+        padding: 20px; 
+    }
+
+    .form-content-wrapper h2 {
+        font-size: 2em;
+        margin-bottom: 25px;
+    }
+
+    .form-group label {
+        font-size: 1.05em;
+        margin-bottom: 8px;
+    }
+
+    .form-group input {
+        padding: 12px 15px;
+        font-size: 0.95em;
+    }
+
+    .neon-button {
+        padding: 15px 25px;
+        font-size: 1.1em;
+        max-width: 250px;
+    }
+
+    .login-link {
+        margin-top: 25px;
+        font-size: 0.95em;
+    }
+}

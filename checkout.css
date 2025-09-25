@@ -1,0 +1,57 @@
+/* Checkout Page Starting */
+:root {
+    --primary-neon: #FF8C00;
+    --primary-neon-rgb: 255, 140, 0;
+    --background-station: #0d0d10;
+    --background-panel: #1a1a1e;
+    --text-primary: #e8e8e8;
+    --text-secondary: #a0a8b4;
+    --text-dark: #020205;
+    --border-color-faint: rgba(var(--primary-neon-rgb), 0.15);
+    --border-color-strong: rgba(var(--primary-neon-rgb), 0.4);
+    --font-primary: 'Inter', system-ui, sans-serif;
+    --success-color: #4CAF50;
+}
+
+body { background-color: var(--background-station); font-family: var(--font-primary); color: var(--text-primary); margin: 0; padding-top: 70px; }
+.checkout-wrapper { max-width: 1100px; margin: 60px auto; padding: 0 20px; }
+.checkout-container { display: flex; flex-wrap: wrap; gap: 40px; }
+.order-summary-panel { flex: 1; min-width: 350px; }
+.payment-panel { flex: 2; min-width: 400px; }
+.order-summary-panel h2, .payment-panel h2 { font-size: 2rem; margin: 0 0 30px 0; color: var(--primary-neon); }
+.summary-game-card { display: flex; align-items: center; gap: 20px; padding: 20px; background: var(--background-panel); border-radius: 8px; border: 1px solid var(--border-color-faint); }
+.summary-game-card img { width: 80px; height: 60px; object-fit: cover; border-radius: 4px; }
+.summary-game-details h3 { margin: 0 0 5px 0; font-size: 1.2rem; }
+.summary-game-details span { color: var(--text-secondary); font-size: 0.9rem; }
+.summary-game-price { margin-left: auto; font-size: 1.2rem; font-weight: 600; }
+.summary-totals { margin-top: 30px; padding: 20px; background: var(--background-panel); border-radius: 8px; border: 1px solid var(--border-color-faint); }
+.total-row { display: flex; justify-content: space-between; font-size: 1rem; color: var(--text-secondary); padding: 15px 0; }
+.total-row.final-total { font-size: 1.4rem; font-weight: bold; color: var(--text-primary); border-top: 1px solid var(--border-color-faint); }
+.payment-options { display: flex; flex-direction: column; gap: 30px; }
+.saved-cards-section h4, .add-new-card-section h4 { font-size: 1.2rem; margin: 0 0 20px 0; color: var(--text-primary); }
+.saved-card-option { display: block; background: var(--background-panel); padding: 20px; border-radius: 8px; border: 2px solid var(--border-color-faint); cursor: pointer; transition: all 0.2s ease; }
+.saved-card-option:has(input:checked) { border-color: var(--primary-neon); box-shadow: 0 0 15px rgba(var(--primary-neon-rgb), 0.3); }
+.saved-card-option input { margin-right: 15px; }
+.card-details { display: flex; align-items: center; gap: 15px; }
+.card-details img { height: 24px; }
+.card-details span { font-weight: 500; }
+.hidden { display: none; }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; margin-bottom: 8px; font-weight: 500; color: var(--text-secondary); }
+.form-group input { width: 100%; padding: 14px; background: #2a2a2a; border: 1px solid #444; border-radius: 6px; color: var(--text-primary); font-size: 1rem; box-sizing: border-box; }
+.form-row { display: flex; gap: 20px; }
+.form-row .form-group { flex: 1; }
+.save-card-option { margin-top: 10px; }
+.save-card-option label { display: flex; align-items: center; gap: 10px; cursor: pointer; color: var(--text-secondary); }
+.paypal-option { margin-top: 30px; padding: 20px; background: #333; border-radius: 8px; display: flex; align-items: center; gap: 20px; opacity: 0.5; cursor: not-allowed; }
+.paypal-option img { height: 24px; }
+.purchase-button {
+    width: 100%; padding: 16px; margin-top: 30px; background: var(--primary-neon); color: var(--text-dark);
+    border: none; border-radius: 6px; font-size: 1.2rem; font-weight: 700; cursor: pointer;
+    transition: all 0.2s ease;
+}
+.purchase-button:hover { background-color: var(--secondary-neon); transform: translateY(-2px); }
+.success-icon { width: 80px; height: 80px; border-radius: 50%; background: var(--success-color); color: white; display: inline-flex; align-items: center; justify-content: center; font-size: 40px; font-weight: bold; margin-bottom: 30px; }
+.checkout-container h1 { font-size: 2.5rem; color: var(--success-color); margin: 0 0 15px 0; }
+.checkout-container p { font-size: 1.2rem; color: var(--text-secondary); line-height: 1.6; }
+/* Checkout Page Ending */
